@@ -3,7 +3,7 @@
 
 def top_k( lst, k ):
     count = {}
-    n = len(lst) + 1 #
+    n = len(lst) + 1
 
     buckets = [[] for _ in range(n)]
 

@@ -22,5 +22,5 @@ def method2(str):
     return False
 
 str = "123a%$^$bg5*&*----gba321"
-print(method8(filter(str)))
-print(method9(filter(str)))
+print(method1(filter(str)))
+print(method2(filter(str)))

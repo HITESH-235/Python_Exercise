@@ -4,26 +4,38 @@
 
 lst = [56, 34, 98, 2, 45, 78, 67, 23, 10, 100, 4, 80, 55, 54, 82, 51]
 
+# def method_1(lst):
+#     right = 0
+#     arr = [0 for _ in range(len(lst))]
+
+#     for x in range(len(lst),0,-1):
+
+#         if lst[x-1] > right:
+#             right = lst[x-1]
+#         arr[x-1] = right
+
+#     profit = 0
+#     for x in range(len(lst)):
+
+#         if profit < (arr[x] - lst[x]):
+#             profit = (arr[x] - lst[x])
+
+#     return profit
+# print(method_1(lst))
+
 def method_1(lst):
-    m  = 0
-    least = 0
-    arr = [0 for _ in range(len(lst))]
-
-    for x in range(len(lst),0,-1):
-
-        if lst[x-1] > least:
-            least = lst[x-1]
-        arr[x-1] = least
-
+    max_right = 0
     profit = 0
-    for x in lst:
 
-        if profit < (arr[lst.index(x)] - x):
-            profit = (arr[lst.index(x)] - x)
+    for x in range(len(lst)-1, -1, -1):
 
+        if lst[x] > max_right:
+            max_right = lst[x]
+
+        profit = max(profit, max_right - lst[x])
     return profit
+        
 print(method_1(lst))
-
 def method_2(lst):
 
     profit = 0

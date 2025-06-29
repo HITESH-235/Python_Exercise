@@ -2,6 +2,8 @@
 # Return 0 in case no profit can be made by selling
 # LEETCODE link: https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
 
+# test
+
 lst = [56, 34, 98, 2, 45, 78, 67, 23, 10, 100, 4, 80, 55, 54, 82, 51]
 
 # def method_1(lst):

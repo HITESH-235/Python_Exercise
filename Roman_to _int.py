@@ -12,10 +12,12 @@ def Roman(str):
         'M' : 1000
     }
     integer = 0
-    for x in range(len(str)-1):
+    for x in range(len(str)):
         if x < len(str)-1 and dct[str[x]] < dct[str[x+1]]:
+            print('1',x)
             integer -= dct[str[x]]
         else:
+            print("2",x)
             integer += dct[str[x]]
     return integer
 

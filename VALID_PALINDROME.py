@@ -21,6 +21,6 @@ def method2(str):
         return True
     return False
 
-str = "123a%$^$bg5*&*----gba321"
-print(method1(filter(str)))
-print(method2(filter(str)))
+str = filter("123a%$^$bg5*&*----gba321")
+print(method1(str))
+print(method2(str))

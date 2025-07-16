@@ -1,29 +1,22 @@
 # Given an integer array nums and an integer k, return the k most frequent elements within the array.
 # LEETCODE link: https://leetcode.com/problems/top-k-frequent-elements/description/
 
-def top_k( lst, k ):
-    count = {}
-    n = len(lst) + 1
 
-    buckets = [[] for _ in range(n)]
+def top_k_frequent(lst, k):
+    frequency_map = {}
+    n = len(lst)
+    buckets = [[] for _ in range(n+1)]
 
     for num in lst:
-        count[num] = 1+count.get(num,0) #keys:items in lst, values:their frequency 
+        frequency_map[num] = frequency_map.get(num, 0) + 1
+    for value, freq in frequency_map.items():
+        buckets[freq].append(value)     
 
-    for n,c in count.items():
-        buckets[c].append(n)  #bucket stores the number accord to freq. (low to high) 
+    results = []
+    for freq in range(n-1, -1, -1):
+        results.extend(buckets[freq])
+        if len(results) >= k:
+            return results[:k]
+    return "K exceeds length of given array!"
 
-    sorted_lst  = []
-    for ind in range(len(buckets)-1,0,-1):
-        sorted_lst.extend(buckets[ind])
-        if len(sorted_lst) >= k:
-            return sorted_lst[0:k]
-            
-        # for num in buckets[ind]:
-        #     sorted_lst.append(num)
-        #     if len(sorted_lst) == k:
-        #         return sorted_lst
-
-    return "value of k exceeded length"
-    
-print(top_k([1,1,1,1,1,1,2,3,4,4,4,4,6,7,8,8,8,8,9,5,5],3))
+print(top_k_frequent([1,1,1,1,1,1,2,3,4,4,4,4,6,7,8,8,8,8,9,5,5],3)) # returns [1,4,8]

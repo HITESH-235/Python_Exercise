@@ -11,8 +11,7 @@ def group_anagram(lst):
             char[ord(x)-ord("a")] += 1  #e.g. for word aabcc: [2,1,2,0,0,0,0,0..........26 elements]
         dct[tuple(char)].append(str)   #the words with the same key gets appended in an empty list (as value)
         #tuple is there because list are not allowed as keys
-    return dct.values() 
+    return list(dct.values())
 
 strs = ["act","pots","tops","cat","stop","hat"]
-
 print(group_anagram(strs))

@@ -8,6 +8,7 @@ def filter(str):
     return str
 
 def method1(str):
+    str = str.lower()
     left, right = 0, len(str)-1
     while left < right:
         if str[left] != str[right]:
@@ -17,10 +18,10 @@ def method1(str):
     return True
 
 def method2(str):
-    if str == str[::-1]: #checks for reverse
+    if str.lower() == str[::-1].lower(): #checks for reverse
         return True
     return False
 
-str = filter("123a%$^$bg5*&*----gba321")
+str = filter("123a%$^$Bg5*&*----gba321")
 print(method1(str))
 print(method2(str))

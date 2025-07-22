@@ -5,6 +5,8 @@
 def top_k_frequent(lst, k):
     frequency_map = {}
     n = len(lst)
+    if n == k:
+        return lst
     buckets = [[] for _ in range(n+1)]
 
     for num in lst:
@@ -13,10 +15,10 @@ def top_k_frequent(lst, k):
         buckets[freq].append(value)     
 
     results = []
-    for freq in range(n-1, -1, -1):
+    for freq in range(n, -1, -1):
         results.extend(buckets[freq])
         if len(results) >= k:
             return results[:k]
     return "K exceeds length of given array!"
 
-print(top_k_frequent([1,1,1,1,1,1,2,3,4,4,4,4,6,7,8,8,8,8,9,5,5],3)) # returns [1,4,8]
+print(top_k_frequent([1,1,1,1,1,4,4,4,4,8,8,8,5,6,7,7,9],3)) # returns [1,4,8]

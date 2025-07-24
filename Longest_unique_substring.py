@@ -1,5 +1,5 @@
 # Given a string s, find the length of the longest substring without duplicate characters. A substring is a contiguous sequence of characters within a string.
-# Leetcode link: 
+# Leetcode link: https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
 
 def longest_unique_substring(s):
     window = set()                  # Stores characters in the current window (no duplicates)

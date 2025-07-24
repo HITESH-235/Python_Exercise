@@ -10,13 +10,13 @@ def two_sum(lst,t):
         x = lst[left]+lst[right]
 
         if x == t:
-            return left+1,right+1
+            return [left+1,right+1]
         
         elif x > t:
-            r -= 1
+            right -= 1
 
         else:
-            l += 1
+            left += 1
 
     return "No Solution"
 

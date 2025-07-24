@@ -2,15 +2,16 @@
 # Note that when there is a tie for a minimum or maximum number, any can be removed.
 # LEETCODE_link: https://leetcode.com/problems/number-of-distinct-averages/description/
 
-def method3(lst):
-    lst.sort()
+def distinctAverages(nums):
+    nums.sort()
     avg_set = set()
-    while len(lst)>0:
-        num1 = lst.pop(0)
-        num2 = lst.pop(len(lst)-1)
-        # print("(",num1,",",num2,")")
-        avg_set.add((num1+num2)/2)
+    left = 0
+    right = len(nums)-1
+    while left < right:
+        avg_set.add(nums[left] + nums[right])
+        left += 1
+        right -= 1
     return len(avg_set)
 
-lst3 = [1,2,5,3,2,2]
-print(method3(lst3))
+lst = [9,5,7,8,7,9,8,2,0,7]
+print(distinctAverages(lst))

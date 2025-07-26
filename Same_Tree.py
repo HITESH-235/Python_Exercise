@@ -1,5 +1,5 @@
 # Given the roots of two binary trees p and q, return true if the trees are equivalent, otherwise return false. Two binary trees are considered equivalent if they share the exact same structure and the nodes have the same values.
-# Leetcode link: https://leetcode.com/problems/same-tree/description/
+# LEETCODE link: https://leetcode.com/problems/same-tree/description/
 
 class TreeNode:
     def __init__(self, data):

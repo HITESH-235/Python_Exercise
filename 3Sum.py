@@ -1,5 +1,5 @@
 # Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] where nums[i] + nums[j] + nums[k] == 0, and the indices i, j and k are all distinct. The output should not contain any duplicate triplets. You may return the output and the triplets in any order.
-# Leetcode Link: https://leetcode.com/problems/3sum/description/
+# LEETCODE Link: https://leetcode.com/problems/3sum/description/
 
 def brute_force(nums): # time complexity: n^3
     n = len(nums)

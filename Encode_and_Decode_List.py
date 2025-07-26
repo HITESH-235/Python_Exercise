@@ -3,37 +3,43 @@
 
 def encode(str_list):
     # Encodes a list of strings to a single string.
-    # Each string is prefixed with its length and a delimiter '@'.
+    # Each string is prefixed with its length and a delimiter '%'.
     encoded_str = ""
 
     for word in str_list:
-        encoded_str += str(len(word))+ "@" + word
+        encoded_str += str(len(word))+ "%" + word
     return encoded_str
 
 
 def decode(encoded_str):
     # Decodes the encoded string back into the original list of strings.
-    # Uses the delimiter '@' to extract string lengths and substrings.
+    # Uses the delimiter '%' to extract string lengths and substrings.
     decoded_lst = []
     i = 0
     while i < len(encoded_str):
         start = i
 
-        while encoded_str[i] != "@": # Find delimiter '@' to extract length of word ahead
+        while encoded_str[i] != "%": # Find delimiter '%' to extract length of word ahead
             i += 1
 
-        word_len = (encoded_str[start:i])
+        word_len = int(encoded_str[start:i])
         start = i + 1 # Move past 'start' to start of word
-        i = start + int(word_len) # Move past 'i' just ahead of end of word (for next segment)
+        i = start + word_len # Move past 'i' just ahead of end of word (for next segment)
 
         word = encoded_str[start:i]
         decoded_lst.append(word)
         start = i # Move 'start' for the next segment as well
     return decoded_lst
 
+# Another Method: (though unreliable due to use of Non-ASCII character)
+# Delimiter = "\x00" # non ASCII character
+# def encode_2(str_list):
+#     return Delimiter.join(str_list)
+# def decode_2(encoded_str):
+#     return encoded_str.split(Delimiter)
 
 # Example Usage:
-lst = ["This","@is@","@","Sentence."]
+lst = ["%This%","%is%","%a%","%Sentence%"]
 encoded_str = encode(lst)
 print("Encoded form of list:",encoded_str)
 print("Decoded again:",decode(encoded_str))

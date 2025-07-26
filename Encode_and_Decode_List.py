@@ -33,7 +33,7 @@ def decode(encoded_str):
 
 
 # Example Usage:
-lst = ["Anjali","hates","Hitesh"]
+lst = ["This","@is@","@","Sentence."]
 encoded_str = encode(lst)
 print("Encoded form of list:",encoded_str)
 print("Decoded again:",decode(encoded_str))

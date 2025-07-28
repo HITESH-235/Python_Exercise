@@ -1,3 +1,5 @@
+# You are given an integer array heights where heights[i] represents the height of the i'th bar.You may choose any two bars to form a container. Return the maximum amount of water a container can store.
+# LEETCODE link: https://leetcode.com/problems/container-with-most-water/description/
 def brute_force(heights): # Time complexity: O(n^2)
     left = 0
     right = 1

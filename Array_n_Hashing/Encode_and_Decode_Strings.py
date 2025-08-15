@@ -17,18 +17,17 @@ def decode(encoded_str):
     decoded_lst = []
     i = 0
     while i < len(encoded_str):
-        start = i
+        start = i # always initialize start for new segment
 
         while encoded_str[i] != "%": # Find delimiter '%' to extract length of word ahead
             i += 1
 
         word_len = int(encoded_str[start:i])
-        start = i + 1 # Move past 'start' to start of word
-        i = start + word_len # Move past 'i' just ahead of end of word (for next segment)
+        start = i + 1 # Move 'start' to start of word
+        i = start + word_len # Move 'i' just ahead of end of word (for next segment)
 
         word = encoded_str[start:i]
         decoded_lst.append(word)
-        start = i # Move 'start' for the next segment as well
     return decoded_lst
 
 # Another Method: (though unreliable due to use of Non-ASCII character)

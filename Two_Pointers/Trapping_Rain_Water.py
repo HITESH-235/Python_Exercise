@@ -4,21 +4,21 @@
 
 def trapping_water_Iterative(heights): # --> (int) as units of water trapped
     right_max = 0 # var to store max value from right
-    suffic_max = [] # var to store right_max
+    suffix_max = [] # var to store right_max
     n = len(heights)
 
     for i in range(n-1, -1, -1):
         right_max = max(right_max, heights[i])
-        suffic_max.append(right_max)
+        suffix_max.append(right_max)
 
-    suffic_max = suffic_max[::-1]
+    suffix_max = suffix_max[::-1]
 
     left_max = 0
     total = 0
 
     for i in range(n):
         left_max = max(left_max, heights[i])
-        total += min(left_max, suffic_max[i]) - heights[i]
+        total += min(left_max, suffix_max[i]) - heights[i]
     return total
 
 

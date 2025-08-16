@@ -39,8 +39,8 @@ def sumRangeIntegrated(nums, left, right):
 
 import random
 nums = [random.randint(-5, 20) for _ in range(20)]
-right = random.randint(5,19)
-left = random.randint(0,right)
+right = 19
+left = 0
 
 print(sumRangeIntegrated(nums, left, right))
 obj = NumArray(nums)

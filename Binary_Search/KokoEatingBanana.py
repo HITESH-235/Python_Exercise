@@ -6,7 +6,7 @@ import random
 from time import time
 
 def brute_force(nums, h):   # nums - piles, h - max hrs required to eat
-    if h < len(nums) or not nums:
+    if not nums:
         return False
 
     for i in range(1,max(nums)):
@@ -18,7 +18,7 @@ def brute_force(nums, h):   # nums - piles, h - max hrs required to eat
 
 
 def binary_search(nums, h):
-    if h < len(nums) or not nums:
+    if not nums:
         return False
 
     def helper(rate):       # rate = bananas per hour
@@ -31,23 +31,20 @@ def binary_search(nums, h):
     right = max(nums)
     res = right             # initialising with max to get min hours
 
-    while left < right:
-        mid = (left + right)//2
+    while left <= right:    # equal sign is for cases where mid = left = right
+        mid = left + (right-left)//2
         total_hr = helper(mid)
 
-        if total_hr == h:
-            return mid
-        elif total_hr < h:
+        if total_hr <= h:   # need smaller rate (more hours hence)
             res = mid
-            right = mid-1   # need smaller rate (more hours hence)
-        else:
-            left = mid+1    # need bigger rate
+            right = mid-1   
+        else:               # need bigger rate
+            left = mid+1
     return res
 
 
-nums = [random.randint(1,1000) for _ in range(100)]
-h = 120
-
+nums = [random.randint(1,10000) for _ in range(100)]
+h = 112
 start = time()
 print(brute_force(nums, h))
 end = time()

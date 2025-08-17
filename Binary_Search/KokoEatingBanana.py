@@ -5,30 +5,30 @@ from math import ceil
 import random
 from time import time
 
-def brute_force(nums, h):   # nums - piles, h - max hrs required to eat
-    if not nums:
+def brute_force(piles, h):   # piles - piles, h - max hrs required to eat
+    if not piles:
         return False
 
-    for i in range(1,max(nums)):
+    for i in range(1,max(piles)):
         total_hr = 0
-        for num in nums:
+        for num in piles:
             total_hr += ceil(num/i)
         if total_hr <= h:
             return i
 
 
-def binary_search(nums, h):
-    if not nums:
+def binary_search(piles, h):
+    if not piles:
         return False
 
     def helper(rate):       # rate = bananas per hour
         total_hr = 0
-        for i in range(len(nums)):
-            total_hr += ceil(nums[i]/rate)
+        for i in range(len(piles)):
+            total_hr += ceil(piles[i]/rate)
         return total_hr
 
     left = 1
-    right = max(nums)
+    right = max(piles)
     res = right             # initialising with max to get min hours
 
     while left <= right:    # equal sign is for cases where mid = left = right
@@ -43,14 +43,15 @@ def binary_search(nums, h):
     return res
 
 
-nums = [random.randint(1,10000) for _ in range(100)]
-h = 112
+piles = [random.randint(1,10000) for _ in range(100)]
+piles = [3,6,7,11]
+h = 8
 start = time()
-print(brute_force(nums, h))
+print(brute_force(piles, h))
 end = time()
 print(f"{((end - start)*1000):.3f} milli-sec")
 
 start = time()
-print(binary_search(nums, h))
+print(binary_search(piles, h))
 end = time()
 print(f"{((end - start)*1000):.3f} milli-sec")

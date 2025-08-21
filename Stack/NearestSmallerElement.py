@@ -2,11 +2,9 @@
 # InterviewBit link : https://www.interviewbit.com/problems/nearest-smaller-element/
  
 def brute_force(A):
-    # stack = [-1]
     G = [-1]
     for i in range(1,len(A)):
         j = i-1
-        # print(j,i)
         while j>=0 and A[j] >= A[i]:
             j -= 1
         G.append(A[j] if j>=0 else -1)

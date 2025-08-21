@@ -64,14 +64,17 @@ class MinStack_2:
         if self.is_empty():
             return
         if self.top.data < 0:
-            self.min = self.cur_min - self.top.data
+            self.cur_min = self.cur_min - self.top.data
         self.top = self.top.next
 
     def getMin(self):
         return self.cur_min
 
     def peek(self):
-        return self.top.data + self.cur_min
+        if self.top.data >= 0:
+            return self.top.data + self.cur_min
+        else:
+            return self.cur_min
 
 
 obj = MinStack()

@@ -6,13 +6,13 @@ def top_k_frequent(lst, k):
     frequency_map = {}
     n = len(lst)
     if n == k:
-        return lst
+        return set(lst)
     buckets = [[] for _ in range(n+1)]
 
     for num in lst:
         frequency_map[num] = frequency_map.get(num, 0) + 1
     for value, freq in frequency_map.items():
-        buckets[freq].append(value)     
+        buckets[freq].append(value)
 
     results = []
     for freq in range(n, -1, -1):

@@ -3,7 +3,7 @@
 # sumRange(left, right) Returns the sum of the elements of nums between indices left and right inclusive (i.e. nums[left] + nums[left + 1] + ... + nums[right]).
 # LEETCODE link: https://leetcode.com/problems/range-sum-query-immutable/description/
 
-class NumArray(object):
+class NumArray:
     def __init__(self, nums):
         self.nums = nums
         self.prefix_sum = []
@@ -45,3 +45,20 @@ left = 0
 print(sumRangeIntegrated(nums, left, right))
 obj = NumArray(nums)
 print(obj.sumRange(left, right))
+
+
+# different way of asking the same question: A = [1,2,3,..], B=[[0,3],[1,2]....], res = [1+2+3+4, 2+3,...]
+def sumRange_interviewbit(A,B):
+    prefix_sum = []
+    temp = 0
+    for i in range(len(A)):
+        temp += A[i]
+        prefix_sum.append(temp)
+    res = []
+    for x,y in B:
+        res.append(prefix_sum[y]-prefix_sum[x]+A[x])
+    return res
+
+A = [1,2,3,4,5]
+B = [[0,3], [1,2], [0,4]]
+print(sumRange_interviewbit(A,B))

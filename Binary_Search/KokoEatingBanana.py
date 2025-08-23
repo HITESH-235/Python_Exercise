@@ -44,7 +44,6 @@ def binary_search(piles, h):
 
 
 piles = [random.randint(1,10000) for _ in range(100)]
-piles = [3,6,7,11]
 h = 8
 start = time()
 print(brute_force(piles, h))

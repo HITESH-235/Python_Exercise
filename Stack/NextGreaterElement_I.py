@@ -5,18 +5,16 @@
 def brute_force(nums1,nums2):
     temp = {}
     n = len(nums2)
-    for i in range(n-1):
+    for i in range(n):
         j = i+1
-        
+        temp[nums2[i]] = -1
+
         while j < n:
             if nums2[j] > nums2[i]:
                 temp[nums2[i]] = nums2[j]
-                j = n
-            elif j == n-1:
-                temp[nums2[i]] = (-1)
-                j = n
+                break
             j+=1
-    temp[nums2[n-1]] = -1
+
     res = []
     for num in nums1:
         res.append(temp[num])
@@ -55,7 +53,7 @@ def optimised(nums1, nums2):
     return res
 
 nums1 = [2, 7, 13, 25, 30, 45, 60, 90, 120, 150]
-nums2 = [2, 1, 7, 5, 13, 10, 25, 20, 30, 28, 45, 40, 60, 55, 90, 85, 120, 110, 150, 200]
+nums2 = [2, 1, 7, 5, 13, 10, 25, 20, 30, 28, 45, 40, 60, 55, 90, 85, 120, 110, 150]
 print("Brute force:",brute_force(nums1,nums2))
 print("Stack:",stack_2(nums1,nums2))
 print("Stack Optimised:",optimised(nums1, nums2))

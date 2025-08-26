@@ -32,7 +32,6 @@ def NextSmaller(arr):
         st.append([arr[i],i])
     return res
 
-arr = [1,1]
 def optimised(arr):
     nse = NextSmaller(arr) # return list with indices of nearest smaller element
     pse = PrevSmaller(arr)
@@ -41,8 +40,8 @@ def optimised(arr):
     for i in range(len(arr)):
         left = i - pse[i]
         right = nse[i] - i # getting the range upto which arr[i] is minimum
-        total += (right * left * arr[i])/mod
-    return total
+        total += (right * left * arr[i])%mod
+    return total%mod
 
 arr = [1,1,1,2,3,4,4]
 print(brute_force(arr))

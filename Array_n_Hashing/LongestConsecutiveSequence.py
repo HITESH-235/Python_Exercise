@@ -95,3 +95,20 @@ start = time()
 print(hash_map_2(lst))
 end = time()
 print(f"{((end - start)*1000):.3f} milli-sec")
+
+# “What if the array has duplicates and you need to count them?”
+def longestseq_with_dups(nums):
+    freq = {}
+    for num in nums:
+        freq[num] = freq.get(num,0) + 1
+    map = {}
+    count = 0
+    for num in nums:
+        if map.get(num,0) == 0:
+            left_end = map.get(num-1,0)
+            right_begin = map.get(num+1,0)
+            map[num] = left_end + right_begin + freq[num]
+            map[num - left_end] = map[num]
+            map[num + right_begin] = map[num]
+            count = max(count, map[num])
+    return count

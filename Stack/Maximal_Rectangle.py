@@ -64,10 +64,6 @@ def stack_histogram(matrix):
     return maximal
 
 
-matrix = [[0, 1, 1], 
-          [1, 1, 1], 
-          [1, 1, 1], 
-          [0, 0, 1]]
 import time
 import random
 n, m = 10000, 10000

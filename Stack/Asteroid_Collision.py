@@ -29,7 +29,7 @@ def optimised(asteroids):
         else:
             while st and st[-1] > 0 and st[-1] < -asteroids[i]:
                 st.pop()
-            if st and st[-1] == -asteroids[i]:
+            if st and st[-1] == -asteroids[i]: # can merge < & = case but break after
                 st.pop()
             elif not st or st[-1] < 0:
                 st.append(asteroids[i])

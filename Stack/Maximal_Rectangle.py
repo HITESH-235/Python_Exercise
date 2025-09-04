@@ -7,17 +7,16 @@ def brute_force(matrix):
     max_area = 0
     for i in range(n):
         for j in range(m):
-            if matrix[i][j] == 1:
-                min_width = float('inf')
-                for k in range(i, n):
+            if matrix[i][j] == 1: # keeps track of 1s found towards right and down
+                min_width = float('inf') # width horizontally
+                for k in range(i, n): # width vertically is just the diff of k & i 
                     if matrix[k][j] == 0:
                         break
                     width = 0
                     for l in range(j, m):
-                        if matrix[k][l] == 1:
-                            width += 1
-                        else:
+                        if matrix[k][l] == 0:
                             break
+                        width += 1
                     min_width = min(min_width, width) # keep the smallest width so far(rows)
                     height = k-i+1 # current columns involved in width
                     max_area = max(max_area, height*min_width)
@@ -25,13 +24,13 @@ def brute_force(matrix):
 
 
 def stack_histogram(matrix):
-    n = len(matrix) # rowa
+    n = len(matrix) # rows
     m = len(matrix[0]) # columns
     prefix_sum = [[0 for _ in range(m)] for _ in range(n)]
 
-    for i in range(m):
+    for i in range(m): # got a column (an index in each row-array)
         sum = 0
-        for j in range(n):
+        for j in range(n): # go through all row-array
             if matrix[j][i] == 1:
                 sum += 1
             else:
@@ -66,11 +65,11 @@ def stack_histogram(matrix):
 
 import time
 import random
-n, m = 10000, 10000
+n, m = 100, 100
 matrix = [[random.randint(0, 1) for _ in range(m)] for _ in range(n)]
 
 start = time.time()
-# print(brute_force(matrix))
+print(brute_force(matrix)) # very slow
 end = time.time()
 print(f"{((end- start)*1000):.3f} milli-sec\n")
 

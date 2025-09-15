@@ -24,11 +24,19 @@ def decode(encoded_str):
 
         word_len = int(encoded_str[start:i])
         start = i + 1 # Move 'start' to start of word
-        i = start + word_len # Move 'i' just ahead of end of word (for next segment)
+        i = (i+1) + word_len # Move 'i' just ahead of end of word (for next segment)
 
         word = encoded_str[start:i]
         decoded_lst.append(word)
     return decoded_lst
+
+
+# Example Usage:
+lst = ["%This%","%is%","%a%","%Sentence%"]
+encoded_str = encode(lst)
+print("Encoded form of list:",encoded_str)
+print("Decoded again:",decode(encoded_str)) 
+
 
 # Another Method: (though unreliable due to use of Non-ASCII character)
 # Delimiter = "\x00" # non ASCII character
@@ -37,8 +45,34 @@ def decode(encoded_str):
 # def decode_2(encoded_str):
 #     return encoded_str.split(Delimiter)
 
-# Example Usage:
-lst = ["%This%","%is%","%a%","%Sentence%"]
-encoded_str = encode(lst)
-print("Encoded form of list:",encoded_str)
-print("Decoded again:",decode(encoded_str))
+# __________________________________________________________________________________________________________________________
+
+# Procedure Explained:
+
+#A. ENCODING:
+# 1.Create one function for encoding list, takes input of given list and has encoded string as output
+
+# 2.Make 1 single string for storing all words of list in format: (length_of_word ; delimiter(%) ; word)
+
+
+
+#B. DECODING:
+# 1.Create another function for decoding, takes (input of encoded_string), (returns decoded_list)
+
+# 2.Create a new list of decoded words
+#   Run a simple loop(while) to iterate through letters of encoded string
+
+# 3.keep two pointers, one is i(iterable) and start(initiated with i)
+#   create another loop with i to find till delimiter (i is now at delimiter%)
+#   we can get the integer storing "length of word" going from (start to i-1) (since i is at %)
+
+# 4.now we have to start iterating through the word so put start = i+1 (start of word after %)
+#   and then put i equal to i(%)+"length of word"(found earlier), so we have the string from (start to i)
+#   store this range (which is the word) in decoded list
+
+#5. repeat this until end
+# return decoded list
+
+#*(keep in mind that range in python only goes till n-1, because below text doesn't consider this)
+
+# __________________________________________________________________________________________________________________________

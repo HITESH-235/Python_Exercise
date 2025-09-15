@@ -15,3 +15,26 @@ def group_anagram(lst):
 
 strs = ["act","pots","tops","cat","stop","hat"]
 print(group_anagram(strs))
+
+
+# ______________________________________________________Procedure Explained:________________________________________________
+
+# 1.Create function which takes given list of strings as input
+
+# 2.Create a default dictionary which takes empty list as values (keys are going to be tuple of char)
+#   Start loop through the string
+#   Inside list create a char_list of 26 0s (to be updated further) (created everytime for new string)
+
+# 3.loop through the curr string
+#   increase the value of the curr alphabet index by 1 in char_list
+#   get index using ascii values: ord(curr_alphabet) - ord(a)
+#   char_list is actually storing the frequency of alphabets, which is unique for an anagram
+
+# 4.come out of loop in curr string,
+#   convert char_list to tuple, store the char_tuple in dictionary as key (because list cant be keys)
+#   for this char_tuple, the value is initially an empty list, update it with the curr_string
+#   everytime a string, anagram to it, comes, will append in the the same (value)list of its corresp. (key)char_tuple
+
+# 5.Hence return the only the values(lists) of this dictionary, such that they are in a parent list
+
+# __________________________________________________________________________________________________________________________

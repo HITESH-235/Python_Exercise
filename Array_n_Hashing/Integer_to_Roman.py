@@ -16,9 +16,16 @@ def intToRoman(num):
             ans += symbol * count
             num %= num_lst[x]
 
+        elif num/num_lst[x] == 1:
+            return num_lst[x]
+
     return ans
 
 print(intToRoman(2674))             # MMDCLXXIV
 print(intToRoman(3888))             # MMMDCCCLXXXVIII
 print(intToRoman(1299))             # MCCXCIX
 print(intToRoman(984))              # CMLXXXIV
+print(intToRoman(900))
+print(intToRoman(1000))
+print(intToRoman(400))
+print(intToRoman(9))

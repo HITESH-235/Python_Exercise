@@ -1,21 +1,25 @@
-# Given an array of integers nums, return the length of the longest consecutive sequence of elements that can be formed. A consecutive sequence is a sequence of elements in which each element is exactly 1 greater than the previous element. The elements do not have to be consecutive in the original array.
+# Given an array of integers nums, return the length of the longest consecutive sequence of elements that can be formed. A consecutive sequence is a sequence of elements in which each element is exactly 1 greater than the previous element. The elements *do not* have to be *consecutive* in the original array.
 # LEETCODE link: https://leetcode.com/problems/longest-consecutive-sequence/description/
 
 def brute_force(nums):
     n = len(nums)
     max_count = 0
+    # using 2 loops, one to iterate through elements, one to look for sequences with num as starter
     for i in range(n):
         count = 1
         num = nums[i]
-        for _ in range(n):
+        for _ in range(n): # loop for searching (num+1)s, looking for sequence starting from num
             if (num+1) in nums:
-                count+= 1
+                count+= 1 # updating count in every sequence encountered
                 num += 1
+            else:
+                break
         max_count = max(max_count, count)
     return max_count
 
 
-def sorting_(nums):
+def sorting_(nums): # simply sorting lets us do 1 loop
+    # looking for (num+1)s, updating count with (+1) if found, (=1) otherwise
     items = sorted(set(nums))
     count = 1
     max_count = 0
@@ -32,11 +36,11 @@ def hash_set(nums):
     items = set(nums)
     max_count = 0
     for num in nums:
-        if (num-1) not in items:
+        if (num-1) not in items: # only checking for start of sequences, initialises count
             count = 1
             while (num + count) in nums: # checks if next is present or not
                 count += 1
-            max_count = max(max_count, count) # updates max_count
+            max_count = max(max_count, count) # updates max_count with curr count
     return max_count
 
 
@@ -69,8 +73,7 @@ def hash_map_2(nums): # simpler
 
 from time import time
 
-lst = [2,20,4,10,3,4,5]
-lst = [0,3,2,5,4,6,1,1]
+lst = [0,3,2,5,4,8,9,4,6,1,1,13,12,11,14,18,19,23,15,16,17,20]
 start = time()
 print(brute_force(lst))
 end = time()
@@ -96,6 +99,8 @@ print(hash_map_2(lst))
 end = time()
 print(f"{((end - start)*1000):.3f} milli-sec")
 
+
+
 # “What if the array has duplicates and you need to count them?”
 def longestseq_with_dups(nums):
     freq = {}
@@ -112,3 +117,17 @@ def longestseq_with_dups(nums):
             map[num + right_begin] = map[num]
             count = max(count, map[num])
     return count
+
+
+# ______________________________________________________Procedure Explained:________________________________________________
+
+# (Brute force and sorting methods explained through comments)
+
+# C.Hash Set:
+# 1.Create a set with all elements of nums, so that lookup at an index is of linear complexity
+#   Search for num which is start of sequence, simply by condition (num-1) not in set
+
+# 2.when found, initiate count = 1, and a while* loop to look for num+count (initially 1) in set
+#   increase count at each iteration of (while)loop, 
+
+# __________________________________________________________________________________________________________________________

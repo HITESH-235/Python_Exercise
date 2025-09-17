@@ -45,9 +45,8 @@ print("Decoded again:",decode(encoded_str))
 # def decode_2(encoded_str):
 #     return encoded_str.split(Delimiter)
 
-# __________________________________________________________________________________________________________________________
+# ______________________________________________________Procedure Explained:________________________________________________
 
-# Procedure Explained:
 
 #A. ENCODING:
 # 1.Create one function for encoding list, takes input of given list and has encoded string as output

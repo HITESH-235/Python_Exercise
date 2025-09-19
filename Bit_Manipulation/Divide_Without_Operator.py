@@ -42,12 +42,13 @@ def divideWithoutOperator_BitManipulation(dividend, divisor):
 print(divideWithoutOperator_BitManipulation(-5707680836,-69730))
 print(divideWithoutOperator_BitManipulation(4,-4))
 
-# ______________________________________________________Procedure Explained:________________________________________________
+# ______________________________________________________Procedure Explained:______________________________________________________
 
 # Brute Force:
 # 1.create a temp equal to divisor
 #   increase temp (by divisor value) until it equals or exceed dividend's value
 #   keep a count var to count each addition done, return count
+# ________________________________________________________________________________________________________________________________
 
 # Bit Manipulation method:
 # 1.handle edge cases such as when dividend is 0, or both are equal or dividend is smaller before main code
@@ -69,4 +70,4 @@ print(divideWithoutOperator_BitManipulation(4,-4))
 
 # 4.at the end, call the helper function, or use res (in iterative) directly
 #   put the sign, do any necessary modulars required (here domain was -2**31 to 2**31-1)
-# __________________________________________________________________________________________________________________________
+# ________________________________________________________________________________________________________________________________

@@ -38,7 +38,7 @@ def hash_set(nums):
     for num in nums:
         if (num-1) not in items: # only checking for start of sequences, initialises count
             count = 1
-            while (num + count) in nums: # checks if next is present or not
+            while (num + count) in items: # checks if next is present or not
                 count += 1
             max_count = max(max_count, count) # updates max_count with curr count
     return max_count
@@ -59,43 +59,45 @@ def hash_map(nums): # updates the left and right of sequences and ignores middle
 
 def hash_map_2(nums): # simpler
     map = dict()
-    count = 0
+    max_count = 0
     for num in nums:
-        if map.get(num,0) == 0:
+        if map.get(num,0) == 0: # doing this so duplicates cannot be considered again
+        # also we dont have to use defaultdict as we use get()
             left_end = map.get(num-1,0)
             right_begin = map.get(num+1,0)
-            map[num] = left_end + right_begin + 1
-            map[num - left_end] = map[num]
-            map[num + right_begin] = map[num]
-            count = max(count, map[num])
-    return count
+            map[num] = left_end + right_begin + 1 # 1 is for curr's own count
+            map[num - left_end] = map[num] # going to the beginning of sequence
+            map[num + right_begin] = map[num] # going to the end of sequence
+            max_count = max(max_count, map[num])
+    return max_count
 
 
 from time import time
-
-lst = [0,3,2,5,4,8,9,4,6,1,1,13,12,11,14,18,19,23,15,16,17,20]
+import random
+lst = list(range(0, 1000))
+random.shuffle(lst)
 start = time()
-print(brute_force(lst))
+print(brute_force(lst), end=": Brute Force: ")
 end = time()
 print(f"{((end - start)*1000):.3f} milli-sec")
 
 start = time()
-print(sorting_(lst))
+print(sorting_(lst), end=": Sorting: ")
 end = time()
 print(f"{((end - start)*1000):.3f} milli-sec")
 
 start = time()
-print(hash_set(lst))
+print(hash_set(lst), end=": Hash Set: ")
 end = time()
 print(f"{((end - start)*1000):.3f} milli-sec")
 
 start = time()
-print(hash_map(lst))
+print(hash_map(lst), end=": Hash Map: ")
 end = time()
 print(f"{((end - start)*1000):.3f} milli-sec")
 
 start = time()
-print(hash_map_2(lst))
+print(hash_map_2(lst), end=": Hash Map-2: ")
 end = time()
 print(f"{((end - start)*1000):.3f} milli-sec")
 
@@ -119,15 +121,17 @@ def longestseq_with_dups(nums):
     return count
 
 
-# ______________________________________________________Procedure Explained:________________________________________________
+# ______________________________________________________Procedure Explained:______________________________________________________
 
-# (Brute force and sorting methods explained through comments)
+# (Brute force, sorting, hash-map methods explained through comments)
 
-# C.Hash Set:
-# 1.Create a set with all elements of nums, so that lookup at an index is of linear complexity
+# Hash Set:
+# 1.Create a set* with all unique elements of nums, so that lookup at an index is of linear complexity
+#   initiate max_count = 0, run a loop in nums
 #   Search for num which is start of sequence, simply by condition (num-1) not in set
 
-# 2.when found, initiate count = 1, and a while* loop to look for num+count (initially 1) in set
-#   increase count at each iteration of (while)loop, 
-
-# __________________________________________________________________________________________________________________________
+# 2.when num-1 is not found, initiate count = 1, and a while* loop
+#   run the while loop till we can find (num+count) in set, increase count if so
+#   check if this curr sequence count is greater than any sequence found earlier, through a var max_count (initially was 0)
+#   return max_count
+# ________________________________________________________________________________________________________________________________

@@ -13,7 +13,7 @@ def minimiseXOR(num1, num2):
     c1 = countSetBits(num1)
     c2 = countSetBits(num2)
 
-    if c1 == c2: return num1
+    if c1 == c2: return num1 # when same no. of set bits, x should be num1
 
     res = 0
     if c1 < c2: # cases where we have more 1s available in num2

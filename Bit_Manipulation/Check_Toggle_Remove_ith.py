@@ -46,6 +46,6 @@ def toggle_ith(num,i):
 
 # REMOVE the last set bit: return num (AND)
 def remove_ith(num):
-    return bin(num & num-1)
+    return num & num-1
 num = 20
 print(remove_ith(20))

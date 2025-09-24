@@ -6,16 +6,14 @@
 class NumArray:
     def __init__(self, nums):
         self.nums = nums
-        self.prefix_sum = []
-        temp = 0
+        self.prefix_sum = [0]
 
         for i in range(len(nums)):
-            temp += nums[i]
-            self.prefix_sum.append(temp)
+            self.prefix_sum.append(self.prefix_sum[-1]+nums[i])
 
     def sumRange(self, left, right):
-        r = self.prefix_sum[right]
-        l = self.prefix_sum[left] - self.nums[left]
+        r = self.prefix_sum[right+1]
+        l = self.prefix_sum[left]
         return r-l
 
 
@@ -31,14 +29,15 @@ def sumRangeIntegrated(nums, left, right):
 
     for i in range(n):
         right_sum += nums[i]
-        if i <= left:
+        if i < left:
             left_sum += nums[i]
         if i == right:
-            return (right_sum - left_sum) + nums[left]
+            return right_sum - left_sum
 
 
 import random
 nums = [random.randint(-5, 20) for _ in range(20)]
+print(nums)
 right = 19
 left = 0
 
@@ -49,14 +48,12 @@ print(obj.sumRange(left, right))
 
 # different way of asking the same question: A = [1,2,3,..], B=[[0,3],[1,2]....], res = [1+2+3+4, 2+3,...]
 def sumRange_interviewbit(A,B):
-    prefix_sum = []
-    temp = 0
+    prefix_sum = [0]
     for i in range(len(A)):
-        temp += A[i]
-        prefix_sum.append(temp)
+        prefix_sum.append(prefix_sum[-1]+A[i])
     res = []
     for x,y in B:
-        res.append(prefix_sum[y]-prefix_sum[x]+A[x])
+        res.append(prefix_sum[y+1]-prefix_sum[x])
     return res
 
 A = [1,2,3,4,5]
